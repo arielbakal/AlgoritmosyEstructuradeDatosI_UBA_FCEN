@@ -50,11 +50,10 @@ nombresDeUsuariosConRepetidos :: RedSocial -> [String]
 nombresDeUsuariosConRepetidos ([], _ , _) = []
 nombresDeUsuariosConRepetidos (us, rels, pubs) = [nombreDeUsuario(head(us))] ++ nombresDeUsuarios( ( tail(us), rels, pubs ) )
 
-
+--amigosDe devuelve todos los usuarios que se relacionan con el usuario u pasado como parámetro.
 -- describir qué hace la función: .....
 amigosDe :: RedSocial -> Usuario -> [Usuario]
-amigosDe 
-
+amigosDe rs u = undefined
 
 -- describir qué hace la función: .....
 cantidadDeAmigos :: RedSocial -> Usuario -> Int
