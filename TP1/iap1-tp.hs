@@ -1,8 +1,8 @@
 -- Completar con los datos del grupo
 --
--- Nombre de Grupo: xx
--- Integrante 1: Nombre Apellido, email, LU
--- Integrante 2: Nombre Apellido, email, LU
+-- Nombre de Grupo: facts
+-- Integrante 1: Teo Nabot, teonabot@gmail.com, 996/22
+-- Integrante 2: Ariel Bakal, bakalariel2002@gmail.com, 1014/22
 -- Integrante 3: Nombre Apellido, email, LU
 -- Integrante 4: Nombre Apellido, email, LU
 
@@ -36,12 +36,25 @@ likesDePublicacion (_, _, us) = us
 
 -- Ejercicios
 
+-- Devuelve una lista de Usuarios sin repetir de una Red Social
 nombresDeUsuarios :: RedSocial -> [String]
-nombresDeUsuarios = undefined
+nombresDeUsuarios rs = limpiarRepetidos(nombresDeUsuariosConRepetidos(rs))
+
+--La función limpiarRepetidos recibe una lista de cadenas de caracteres y devuelve la lista sin las cadenas de caracteres repetidas.
+limpiarRepetidos :: [String] -> [String]
+limpiarRepetidos [] = []
+limpiarRepetidos (x:xs) | elem x xs = limpiarRepetidos xs 
+                        | otherwise = [x] ++ limpiarRepetidos xs
+
+nombresDeUsuariosConRepetidos :: RedSocial -> [String]
+nombresDeUsuariosConRepetidos ([], _ , _) = []
+nombresDeUsuariosConRepetidos (us, rels, pubs) = [nombreDeUsuario(head(us))] ++ nombresDeUsuarios( ( tail(us), rels, pubs ) )
+
 
 -- describir qué hace la función: .....
 amigosDe :: RedSocial -> Usuario -> [Usuario]
-amigosDe = undefined
+amigosDe 
+
 
 -- describir qué hace la función: .....
 cantidadDeAmigos :: RedSocial -> Usuario -> Int
