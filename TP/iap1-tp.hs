@@ -23,10 +23,10 @@ publicaciones :: RedSocial -> [Publicacion]
 publicaciones (_, _, ps) = ps
 
 idDeUsuario :: Usuario -> Integer
-idDeUsuario (id, _) = id 
+idDeUsuario (id, _) = id
 
 nombreDeUsuario :: Usuario -> String
-nombreDeUsuario (_, nombre) = nombre 
+nombreDeUsuario (_, nombre) = nombre
 
 usuarioDePublicacion :: Publicacion -> Usuario
 usuarioDePublicacion (u, _, _) = u
@@ -38,35 +38,41 @@ likesDePublicacion (_, _, us) = us
 
 -- Devuelve una lista de Usuarios sin repetir de una Red Social
 nombresDeUsuarios :: RedSocial -> [String]
-nombresDeUsuarios (us, rels, pubs) = limpiarRepetidos(nombresDeUsuariosConRepetidos(us))
+nombresDeUsuarios (us, rels, pubs) = limpiarRepetidos (nombresDeUsuariosConRepetidos us)
 
 --La función limpiarRepetidos recibe una lista de cadenas de caracteres y devuelve la lista sin las cadenas de caracteres repetidas.
 limpiarRepetidos :: [String] -> [String]
 limpiarRepetidos [] = []
-limpiarRepetidos (x:xs) | elem x xs = limpiarRepetidos xs 
-                        | otherwise = [x] ++ limpiarRepetidos xs
+limpiarRepetidos (x:xs) | x `elem` xs = limpiarRepetidos xs
+                        | otherwise = x : limpiarRepetidos xs
 
 nombresDeUsuariosConRepetidos :: [Usuario] -> [String]
 nombresDeUsuariosConRepetidos [] = []
-nombresDeUsuariosConRepetidos us = [nombreDeUsuario(head(us))] ++ nombresDeUsuariosConRepetidos(tail(us))
+nombresDeUsuariosConRepetidos us = nombreDeUsuario (head us) : nombresDeUsuariosConRepetidos (tail us)
 
 --amigosDe devuelve todos los usuarios que se relacionan con el usuario u pasado como parámetro.
-amigosDe :: RedSocial -> Usuario -> [String]
-amigosDe (us, rels, pubs) u = relacionesUsuario(rels)(u)
+--amigosDeVieja :: RedSocial -> Usuario -> [String] :tiene que devolver una lista de Usuarios que son tuplas, no de strings. Ahora esta devolviendo solo los nombres, no la tupla id-nombre
+--amigosDeVieja (us, rels, pubs) u = relacionadosAUsuario rels u
 
-relacionesUsuario :: [Relacion] -> Usuario -> [String]
-relacionesUsuario [] u = []
-relacionesUsuario (x:xs) u | u == fst(x) = [nombreDeUsuario(snd(x))] ++ relacionesUsuario(xs)(u)
-                           | u == snd(x) = [nombreDeUsuario(fst(x))] ++ relacionesUsuario(xs)(u)
-                           | otherwise = relacionesUsuario(xs)(u)
+amigosDe :: RedSocial -> Usuario -> [Usuario]
+amigosDe (_, rels, _) u = relacionadosAUsuario rels u
 
--- describir qué hace la función: .....
+--dada una lista de relaciones y un usuario u, devuelve los usuarios relacionados al usuario u mediante las relaciones
+relacionadosAUsuario :: [Relacion] -> Usuario -> [Usuario]
+relacionadosAUsuario [] u = []
+relacionadosAUsuario (x:xs) u | u == fst x = snd x : relacionadosAUsuario xs u
+                              | u == snd x = fst x : relacionadosAUsuario xs u
+                              | otherwise = relacionadosAUsuario xs u
+
+
+-- dada una red social y un usuario devuelve la cantidad de amigos del usuario, viendo la cantidad de elemntos que tiene la lista de amigos
 cantidadDeAmigos :: RedSocial -> Usuario -> Int
-cantidadDeAmigos red u = contadorDeLista(amigosDe(red)(u))
+cantidadDeAmigos rs u = cantidadDeElementos (amigosDe rs u)
 
-contadorDeLista :: [String] -> Int
-contadorDeLista [] = 0
-contadorDeLista (x:xs) = 1 + contadorDeLista(xs)
+--dada una lista de usuarios, devuelve la cantidad de usuarios que tiene esa lista
+cantidadDeElementos :: [a] -> Int
+cantidadDeElementos [] = 0
+cantidadDeElementos (x:xs) = 1 + cantidadDeElementos (xs)
 
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
