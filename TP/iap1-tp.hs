@@ -38,7 +38,7 @@ likesDePublicacion (_, _, us) = us
 
 -- Devuelve una lista de Usuarios sin repetir de una Red Social
 nombresDeUsuarios :: RedSocial -> [String]
-nombresDeUsuarios rs = limpiarRepetidos(nombresDeUsuariosConRepetidos(rs))
+nombresDeUsuarios (us, rels, pubs) = limpiarRepetidos(nombresDeUsuariosConRepetidos(us))
 
 --La función limpiarRepetidos recibe una lista de cadenas de caracteres y devuelve la lista sin las cadenas de caracteres repetidas.
 limpiarRepetidos :: [String] -> [String]
@@ -46,22 +46,36 @@ limpiarRepetidos [] = []
 limpiarRepetidos (x:xs) | elem x xs = limpiarRepetidos xs 
                         | otherwise = [x] ++ limpiarRepetidos xs
 
-nombresDeUsuariosConRepetidos :: RedSocial -> [String]
-nombresDeUsuariosConRepetidos ([], _ , _) = []
-nombresDeUsuariosConRepetidos (us, rels, pubs) = [nombreDeUsuario(head(us))] ++ nombresDeUsuarios( ( tail(us), rels, pubs ) )
+nombresDeUsuariosConRepetidos :: [Usuario] -> [String]
+nombresDeUsuariosConRepetidos [] = []
+nombresDeUsuariosConRepetidos us = [nombreDeUsuario(head(us))] ++ nombresDeUsuariosConRepetidos(tail(us))
 
 --amigosDe devuelve todos los usuarios que se relacionan con el usuario u pasado como parámetro.
--- describir qué hace la función: .....
-amigosDe :: RedSocial -> Usuario -> [Usuario]
-amigosDe rs u = undefined
+amigosDe :: RedSocial -> Usuario -> [String]
+amigosDe (us, rels, pubs) u = relacionesUsuario(rels)(u)
+
+relacionesUsuario :: [Relacion] -> Usuario -> [String]
+relacionesUsuario [] u = []
+relacionesUsuario (x:xs) u | u == fst(x) = [nombreDeUsuario(snd(x))] ++ relacionesUsuario(xs)(u)
+                           | u == snd(x) = [nombreDeUsuario(fst(x))] ++ relacionesUsuario(xs)(u)
+                           | otherwise = relacionesUsuario(xs)(u)
 
 -- describir qué hace la función: .....
 cantidadDeAmigos :: RedSocial -> Usuario -> Int
-cantidadDeAmigos = undefined
+cantidadDeAmigos red u = contadorDeLista(amigosDe(red)(u))
+
+contadorDeLista :: [String] -> Int
+contadorDeLista [] = 0
+contadorDeLista (x:xs) = 1 + contadorDeLista(xs)
 
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
-usuarioConMasAmigos = undefined
+usuarioConMasAmigos (u:us, rels, pubs) = usuarioConMasAmigosAux (us, rels, pubs) us u
+
+usuarioConMasAmigosAux :: RedSocial -> [Usuario] -> Usuario -> Usuario
+usuarioConMasAmigosAux red [] l = l
+usuarioConMasAmigosAux red (u:us) l | cantidadDeAmigos red l >= cantidadDeAmigos red u = usuarioConMasAmigosAux red us l
+                                    | otherwise = usuarioConMasAmigosAux red us u
 
 -- describir qué hace la función: .....
 estaRobertoCarlos :: RedSocial -> Bool
