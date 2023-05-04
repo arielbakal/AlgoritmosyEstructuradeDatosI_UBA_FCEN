@@ -1,3 +1,5 @@
+module Solucion where
+
 -- Completar con los datos del grupo
 --
 -- Nombre de Grupo: facts
@@ -76,7 +78,7 @@ cantidadDeElementos (x:xs) = 1 + cantidadDeElementos (xs)
 
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
-usuarioConMasAmigos (u:us, rels, pubs) = usuarioConMasAmigosAux (us, rels, pubs) us u
+usuarioConMasAmigos (u:us, rels, pubs) = usuarioConMasAmigosAux ((u:us), rels, pubs) us u
 
 usuarioConMasAmigosAux :: RedSocial -> [Usuario] -> Usuario -> Usuario
 usuarioConMasAmigosAux red [] l = l
