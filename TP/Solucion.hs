@@ -5,8 +5,8 @@ module Solucion where
 -- Nombre de Grupo: facts
 -- Integrante 1: Teo Nabot, teonabot@gmail.com, 996/22
 -- Integrante 2: Ariel Bakal, bakalariel2002@gmail.com, 1014/22
--- Integrante 3: Nombre Apellido, email, LU
--- Integrante 4: Nombre Apellido, email, LU
+-- Integrante 3: Juan Cruz Berton, juanceberton@gmail.com 835/22
+-- Integrante 4: Luca Dardenne, lucadardenne@gmail.com, 564/23
 
 type Usuario = (Integer, String) -- (id, nombre)
 type Relacion = (Usuario, Usuario) -- usuarios que se relacionan
@@ -91,21 +91,40 @@ estaRobertoCarlos ([], _, _) = False
 estaRobertoCarlos (us, rels, pubs) | cantidadDeAmigos (us, rels, pubs) (head us) > 1000000 = True
                                    | otherwise = estaRobertoCarlos (tail us, rels, pubs) 
 
--- describir qué hace la función: .....
+-- Devuelve las publicaciones de un usuario
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
-publicacionesDe = 
+publicacionesDe (us, rels, []) u = []
+publicacionesDe (us, rels, (p:pubs)) u | u == usuarioDePublicacion p = p : ( publicacionesDe (us, rels, pubs) u )
+                                       | otherwise = publicacionesDe (us, rels, pubs) u
 
 -- describir qué hace la función: .....
 publicacionesQueLeGustanA :: RedSocial -> Usuario -> [Publicacion]
-publicacionesQueLeGustanA = undefined
+publicacionesQueLeGustanA (us, rels, []) u = [] 
+publicacionesQueLeGustanA (us, rels, p:pubs) u | elem u (likesDePublicacion p) = p : publicacionesQueLeGustanA (us, rels, (pubs)) u
+                                               | otherwise = publicacionesQueLeGustanA (us, rels, (pubs)) u
 
 -- describir qué hace la función: .....
 lesGustanLasMismasPublicaciones :: RedSocial -> Usuario -> Usuario -> Bool
-lesGustanLasMismasPublicaciones = undefined
+lesGustanLasMismasPublicaciones (us, rels, []) u1 u2 = True
+lesGustanLasMismasPublicaciones (us, rels, p:pubs) u1 u2 = (elem u1 (likesDePublicacion p) == elem u2 (likesDePublicacion p)) && lesGustanLasMismasPublicaciones (us, rels, pubs) u1 u2    
+--lesGustanLasMismasPublicaciones rs u1 u2 = (publicacionesQueLeGustanA rs u1) == (publicacionesQueLeGustanA rs u2)
 
+--un usuario debe haberle dado like a todas las publicaciones del usuario parametro
 -- describir qué hace la función: .....
+
+
 tieneUnSeguidorFiel :: RedSocial -> Usuario -> Bool
-tieneUnSeguidorFiel = undefined
+--tieneUnSeguidorFiel (us, rels, p:pubs) u | incluido (publicacionesDe u) (publicacionesQueLeGustanA(head (likesDePublicacion p))) == True = True
+ --                                        | otherwise = tieneUnSeguidorFiel (us, rels, pubs) u
+
+tieneUnSeguidorFiel ([], rels, pubs) u = False
+tieneUnSeguidorFiel (us, rels, pubs) u | head us == u = tieneUnSeguidorFiel (tail us, rels, pubs) u
+                                       | otherwise = incluido (publicacionesDe (us, rels, pubs) u) (publicacionesQueLeGustanA (us, rels, pubs) (head us)) || tieneUnSeguidorFiel ((tail us), rels, pubs) u
+
+--incluido :: Eq a -> [a] -> [a] -> Bool
+incluido [] l = True
+incluido l1 l2 | elem (head l1) l2 = incluido (tail l1) l2
+               | otherwise = False
 
 -- describir qué hace la función: .....
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
