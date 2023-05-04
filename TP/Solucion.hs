@@ -85,13 +85,15 @@ usuarioConMasAmigosAux red [] l = l
 usuarioConMasAmigosAux red (u:us) l | cantidadDeAmigos red l >= cantidadDeAmigos red u = usuarioConMasAmigosAux red us l
                                     | otherwise = usuarioConMasAmigosAux red us u
 
--- describir qué hace la función: .....
+-- Determina si hay un usuario con mas de 1000000 de amigos
 estaRobertoCarlos :: RedSocial -> Bool
-estaRobertoCarlos = undefined
+estaRobertoCarlos ([], _, _) = False
+estaRobertoCarlos (us, rels, pubs) | cantidadDeAmigos (us, rels, pubs) (head us) > 1000000 = True
+                                   | otherwise = estaRobertoCarlos (tail us, rels, pubs) 
 
 -- describir qué hace la función: .....
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
-publicacionesDe = undefined
+publicacionesDe = 
 
 -- describir qué hace la función: .....
 publicacionesQueLeGustanA :: RedSocial -> Usuario -> [Publicacion]
