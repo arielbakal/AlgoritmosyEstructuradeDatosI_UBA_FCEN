@@ -128,4 +128,14 @@ incluido l1 l2 | elem (head l1) l2 = incluido (tail l1) l2
 
 -- describir qué hace la función: .....
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
-existeSecuenciaDeAmigos = undefined
+existeSecuenciaDeAmigos red u1 u2 = aca iria el caso base
+existeSecuenciaDeAmigos red u1 u2 | usuarioEnComun amigosU1 amigosU2 = true
+                                  | existeSecuenciaDeAmigos red (head amigosU1) (head amigosU2)
+                                    where 
+                                        amigosU1 = amigosDe red u1
+                                        amigosU2 = amigosDe red u2
+
+
+--devuelve true si un usuario se repite
+usuarioEnComun :: [Usuario] -> [Usuario] -> Bool
+
