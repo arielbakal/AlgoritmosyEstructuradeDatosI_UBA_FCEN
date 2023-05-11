@@ -45,20 +45,19 @@ likesDePublicacion (_, _, us) = us
 nombresDeUsuarios :: RedSocial -> [String]
 nombresDeUsuarios (us, rels, pubs) = limpiarRepetidos (nombresDeUsuariosConRepetidos us)
 
+pertenece _ [] = False
+pertenece a (x:xs) = a == x || pertenece a xs
+
 -- La función limpiarRepetidos recibe una lista de cadenas de caracteres y devuelve la lista sin las cadenas de caracteres repetidas.
 limpiarRepetidos :: [String] -> [String]
 limpiarRepetidos [] = []
-limpiarRepetidos (x : xs)
-  | x `elem` xs = limpiarRepetidos xs
+limpiarRepetidos (x : xs) 
+  | pertenece x xs = limpiarRepetidos xs
   | otherwise = x : limpiarRepetidos xs
 
 nombresDeUsuariosConRepetidos :: [Usuario] -> [String]
 nombresDeUsuariosConRepetidos [] = []
 nombresDeUsuariosConRepetidos us = nombreDeUsuario (head us) : nombresDeUsuariosConRepetidos (tail us)
-
--- amigosDe devuelve todos los usuarios que se relacionan con el usuario u pasado como parámetro.
--- amigosDeVieja :: RedSocial -> Usuario -> [String] :tiene que devolver una lista de Usuarios que son tuplas, no de strings. Ahora esta devolviendo solo los nombres, no la tupla id-nombre
--- amigosDeVieja (us, rels, pubs) u = relacionadosAUsuario rels u
 
 amigosDe :: RedSocial -> Usuario -> [Usuario]
 amigosDe (_, rels, _) = relacionadosAUsuario rels
@@ -108,25 +107,18 @@ publicacionesDe (us, rels, p : pubs) u
 publicacionesQueLeGustanA :: RedSocial -> Usuario -> [Publicacion]
 publicacionesQueLeGustanA (us, rels, []) u = []
 publicacionesQueLeGustanA (us, rels, p : pubs) u
-  | u `elem` likesDePublicacion p = p : publicacionesQueLeGustanA (us, rels, pubs) u
+  | pertenece u likesDePublicacion p = p : publicacionesQueLeGustanA (us, rels, pubs) u
   | otherwise = publicacionesQueLeGustanA (us, rels, pubs) u
 
 -- describir qué hace la función: .....
 lesGustanLasMismasPublicaciones :: RedSocial -> Usuario -> Usuario -> Bool
 lesGustanLasMismasPublicaciones (us, rels, []) u1 u2 = True
 lesGustanLasMismasPublicaciones (us, rels, p : pubs) u1 u2 =
-  (elem u1 (likesDePublicacion p) == elem u2 (likesDePublicacion p))
+  (pertenece u1 (likesDePublicacion p) == pertenece u2 (likesDePublicacion p))
     && lesGustanLasMismasPublicaciones (us, rels, pubs) u1 u2
 
--- lesGustanLasMismasPublicaciones rs u1 u2 = (publicacionesQueLeGustanA rs u1) == (publicacionesQueLeGustanA rs u2)
-
 -- un usuario debe haberle dado like a todas las publicaciones del usuario parametro
--- describir qué hace la función: .....
-
 tieneUnSeguidorFiel :: RedSocial -> Usuario -> Bool
--- tieneUnSeguidorFiel (us, rels, p:pubs) u | incluido (publicacionesDe u) (publicacionesQueLeGustanA(head (likesDePublicacion p))) == True = True
---                                        | otherwise = tieneUnSeguidorFiel (us, rels, pubs) u
-
 tieneUnSeguidorFiel ([], rels, pubs) u = False
 tieneUnSeguidorFiel (us, rels, pubs) u
   | head us == u = tieneUnSeguidorFiel (tail us, rels, pubs) u
@@ -134,17 +126,18 @@ tieneUnSeguidorFiel (us, rels, pubs) u
       incluido (publicacionesDe (us, rels, pubs) u) (publicacionesQueLeGustanA (us, rels, pubs) (head us))
         || tieneUnSeguidorFiel (tail us, rels, pubs) u
 
+-- si una lista esta incluida en otra lista
 incluido :: Eq a => [a] -> [a] -> Bool
 incluido [] l = True
 incluido l1 l2
-  | head l1 `elem` l2 = incluido (tail l1) l2
+  | pertenece (head l1) l2 = incluido (tail l1) l2
   | otherwise = False
 
 -- "recorre" la lista de relaciones partiendo del usuario inicial,
 -- descartando en las que no se encuentra el usuario final
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
 existeSecuenciaDeAmigos (users, rels, pubs) usuarioInicial usuarioFinal
-  | null relacionesDeUsuarioInicial = False
+  | [] == relacionesDeUsuarioInicial = False
   | siguienteUsuario == usuarioFinal = True
   | otherwise =
       existeSecuenciaDeAmigos (users, listaSinRelacion, pubs) usuarioInicial usuarioFinal
