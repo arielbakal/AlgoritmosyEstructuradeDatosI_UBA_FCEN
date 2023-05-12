@@ -107,7 +107,7 @@ publicacionesDe (us, rels, p : pubs) u
 publicacionesQueLeGustanA :: RedSocial -> Usuario -> [Publicacion]
 publicacionesQueLeGustanA (us, rels, []) u = []
 publicacionesQueLeGustanA (us, rels, p : pubs) u
-  | pertenece u likesDePublicacion p = p : publicacionesQueLeGustanA (us, rels, pubs) u
+  | pertenece u (likesDePublicacion p) = p : publicacionesQueLeGustanA (us, rels, pubs) u
   | otherwise = publicacionesQueLeGustanA (us, rels, pubs) u
 
 -- describir qué hace la función: .....
