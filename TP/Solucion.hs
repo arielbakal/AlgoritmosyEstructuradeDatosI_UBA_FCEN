@@ -45,13 +45,14 @@ likesDePublicacion (_, _, us) = us
 nombresDeUsuarios :: RedSocial -> [String]
 nombresDeUsuarios (us, rels, pubs) = limpiarRepetidos (nombresDeUsuariosConRepetidos us)
 
+pertenece :: Eq t => t -> [t] -> Bool
 pertenece _ [] = False
-pertenece a (x:xs) = a == x || pertenece a xs
+pertenece a (x : xs) = a == x || pertenece a xs
 
 -- La función limpiarRepetidos recibe una lista de cadenas de caracteres y devuelve la lista sin las cadenas de caracteres repetidas.
 limpiarRepetidos :: [String] -> [String]
 limpiarRepetidos [] = []
-limpiarRepetidos (x : xs) 
+limpiarRepetidos (x : xs)
   | pertenece x xs = limpiarRepetidos xs
   | otherwise = x : limpiarRepetidos xs
 
