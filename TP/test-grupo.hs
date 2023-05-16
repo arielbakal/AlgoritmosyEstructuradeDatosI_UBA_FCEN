@@ -8,8 +8,12 @@ ejercicio1casoA = nombresDeUsuarios redA ~?= ["Teo", "Ariel", "Juan Cruz", "Luca
 ejercicio1casoB = nombresDeUsuarios redB ~?= ["Teo", "Ariel", "Luca"]
 --
 ejercicio2casoA = amigosDe redA usuario1 ~?= [usuario2, usuario4]
-ejercicio2casoC = amigosDe redA usuario3 ~?= [usuario4, usuario5]
-ejercicio2casoD = amigosDe redA usuario6 ~?= []
+ejercicio2casoB = amigosDe redA usuario3 ~?= [usuario4, usuario5]
+ejercicio2casoC = amigosDe redA usuario6 ~?= []
+
+ejercicio3casoA = cantidadDeAmigos redA usuario6 ~?= 0
+ejercicio3casoB = cantidadDeAmigos redA usuario3 ~?= 2
+ejercicio3casoC = cantidadDeAmigos redA usuario1 ~?= 3
 
 {- Y AGREGARLOS ACÁ con un nombre descriptivo -}
 casos = TestList [
@@ -19,8 +23,11 @@ casos = TestList [
   --CASOS EJERCICIO 2
   TestLabel "amigosDe" ejercicio2casoA,
   TestLabel "amigosDe con amigos de nombre repetido" ejercicio2casoB,
-  TestLabel "amigosDe sin amigos" ejercicio2casoC
-  --CASOS EJERCICIO 3...
+  TestLabel "amigosDe sin amigos" ejercicio2casoC,
+  --CASOS EJERCICIO 3
+  TestLabel "cantidadDeAmigos usuario sin amigos" ejercicio3casoA,
+  TestLabel "cantidadDeAmigos usuario con al menos 1 amigo, con amigos con nombres repetidos" ejercicio3casoB,
+  TestLabel "cantidadDeAmigos usuario con al menos 1 amigo, con amigos sin nombres repetidos" ejercicio3casoC
   ]
 
 {- DATOS -}
@@ -55,7 +62,7 @@ publicacion4_2 = (usuario4, "I am Bob", [])
 publicacion4_3 = (usuario4, "Just kidding, i am Mariela", [usuario1, usuario3])
 
 --red A
-usuariosA = [usuario1, usuario2, usuario3, usuario4]
+usuariosA = [usuario1, usuario2, usuario3, usuario4, usuario6]
 relacionesA = [relacion1_2, relacion1_4, relacion2_4, relacion3_4, relacion3_5]
 publicacionesA = [publicacion1_1, publicacion1_2, publicacion2_1, publicacion2_2, publicacion3_1, publicacion3_2, publicacion4_1, publicacion4_2]
 redA = (usuariosA, relacionesA, publicacionesA)
