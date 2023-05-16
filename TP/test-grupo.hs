@@ -4,7 +4,7 @@ import Test.HUnit
 run = runTestTT casos -- para correr los tests ejecutar este archivo y escribir "run"
 
 {- ESCRIBIR CASOS DE TEST ACÁ -}
-ejercicio1casoA = nombresDeUsuarios redA ~?= ["Teo", "Ariel", "Juan Cruz", "Luca"]
+ejercicio1casoA = nombresDeUsuarios redA ~?= ["Teo", "Ariel", "Juan Cruz", "Luca", "Roberto Carlos"]
 ejercicio1casoB = nombresDeUsuarios redB ~?= ["Teo", "Ariel", "Luca"]
 --
 ejercicio2casoA = amigosDe redA usuario1 ~?= [usuario2, usuario4]
@@ -13,7 +13,7 @@ ejercicio2casoC = amigosDe redA usuario6 ~?= []
 
 ejercicio3casoA = cantidadDeAmigos redA usuario6 ~?= 0
 ejercicio3casoB = cantidadDeAmigos redA usuario3 ~?= 2
-ejercicio3casoC = cantidadDeAmigos redA usuario1 ~?= 3
+ejercicio3casoC = cantidadDeAmigos redA usuario4 ~?= 3
 
 {- Y AGREGARLOS ACÁ con un nombre descriptivo -}
 casos = TestList [
