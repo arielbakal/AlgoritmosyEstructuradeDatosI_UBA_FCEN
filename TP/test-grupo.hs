@@ -5,7 +5,7 @@ run = runTestTT casos -- para correr los tests ejecutar este archivo y escribir 
 
 {- ESCRIBIR CASOS DE TEST ACÁ -}
 ejercicio1casoA :: Test
-ejercicio1casoA = nombresDeUsuarios redA ~?= ["Teo", "Ariel", "Juan Cruz", "Luca"]
+ejercicio1casoA = nombresDeUsuarios redA ~?= ["Teo", "Ariel", "Juan Cruz", "Luca", "Roberto Carlos"]
 
 ejercicio1casoB :: Test
 ejercicio1casoB = nombresDeUsuarios redB ~?= ["Teo", "Ariel", "Luca"]
