@@ -4,14 +4,7 @@ import Test.HUnit
 run = runTestTT casos -- para correr los tests ejecutar este archivo y escribir "run"
 
 {- ESCRIBIR CASOS DE TEST ACÁ -}
-<<<<<<< HEAD
 ejercicio1casoA = nombresDeUsuarios redA ~?= ["Teo", "Ariel", "Juan Cruz", "Luca", "Roberto Carlos"]
-=======
-ejercicio1casoA :: Test
-ejercicio1casoA = nombresDeUsuarios redA ~?= ["Teo", "Ariel", "Juan Cruz", "Luca", "Roberto Carlos"]
-
-ejercicio1casoB :: Test
->>>>>>> 0069cd2e73e1600bfda68511ea7acf9b27edec8f
 ejercicio1casoB = nombresDeUsuarios redB ~?= ["Teo", "Ariel", "Luca"]
 
 --
@@ -24,13 +17,14 @@ ejercicio2casoB = amigosDe redA usuario3 ~?= [usuario4, usuario5]
 ejercicio2casoC :: Test
 ejercicio2casoC = amigosDe redA usuario6 ~?= []
 
-<<<<<<< HEAD
 ejercicio3casoA = cantidadDeAmigos redA usuario6 ~?= 0
 ejercicio3casoB = cantidadDeAmigos redA usuario3 ~?= 2
 ejercicio3casoC = cantidadDeAmigos redA usuario4 ~?= 3
 
-=======
->>>>>>> 0069cd2e73e1600bfda68511ea7acf9b27edec8f
+ejercicio7casoA = publicacionesQueLeGustanA redA usuario6 ~?= []
+ejercicio7casoB = publicacionesQueLeGustanA redA usuario2 ~?= [publicacion1_1, publicacion3_2, publicacion4_1]
+ejercicio7casoC = publicacionesQueLeGustanA red7 usuario2 ~?= []
+
 {- Y AGREGARLOS ACÁ con un nombre descriptivo -}
 casos =
   TestList
@@ -40,8 +34,16 @@ casos =
       -- CASOS EJERCICIO 2
       TestLabel "amigosDe" ejercicio2casoA,
       TestLabel "amigosDe con amigos de nombre repetido" ejercicio2casoB,
-      TestLabel "amigosDe sin amigos" ejercicio2casoC
-      -- CASOS EJERCICIO 3...
+      TestLabel "amigosDe sin amigos" ejercicio2casoC,
+      -- CASOS EJERCICIO 3
+      TestLabel "cantidadDeAmigos usuario sin amigos" ejercicio3casoA,
+      TestLabel "cantidadDeAmigos usuario con amigos, con nombres de amigos repetidos" ejercicio3casoB,
+      TestLabel "cantidadDeAmigos usuario con amigos, sin nombres de amigos repetidos" ejercicio3casoC,
+      -- CASOS EJERCICIO 7
+      TestLabel "publicacionesQueLeGustanA usuario sin publicaciones gustadas" ejercicio7casoA,
+      TestLabel "publicacionesQueLeGustanA usuario con publicaciones gustadas" ejercicio7casoB,
+      TestLabel "publicacionesQueLeGustanA red social sin publicaciones" ejercicio7casoC
+
     ]
 
 {- DATOS -}
@@ -115,3 +117,5 @@ relacionesB = [relacion1_2, relacion2_3]
 publicacionesB = [publicacion1_3, publicacion1_4, publicacion1_5, publicacion3_1, publicacion3_2, publicacion3_3]
 
 redB = (usuariosB, relacionesB, publicacionesB)
+
+red7 =(usuariosA, relacionesA, [])
