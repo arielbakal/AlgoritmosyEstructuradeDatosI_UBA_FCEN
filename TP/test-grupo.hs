@@ -38,6 +38,16 @@ ejercicio7casoB = publicacionesQueLeGustanA redA usuario2 ~?= [publicacion1_1, p
 
 ejercicio7casoC = publicacionesQueLeGustanA red7 usuario2 ~?= []
 
+--
+
+ejercicio8casoA = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], []) usuario1 usuario2 ~?= True 
+
+ejercicio8casoB = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2])]) usuario1 usuario1 ~?= True
+
+ejercicio8casoC = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2])]) usuario1 usuario2 ~?= True
+
+ejercicio8casoD = lesGustanLasMismasPublicaciones redB usuario2 usuario5 ~?= False
+
 {- Y AGREGARLOS ACÁ con un nombre descriptivo -}
 casos =
   TestList
@@ -60,7 +70,13 @@ casos =
       -- CASOS EJERCICIO 7
       TestLabel "publicacionesQueLeGustanA usuario sin publicaciones gustadas" ejercicio7casoA,
       TestLabel "publicacionesQueLeGustanA usuario con publicaciones gustadas" ejercicio7casoB,
-      TestLabel "publicacionesQueLeGustanA red social sin publicaciones" ejercicio7casoC
+      TestLabel "publicacionesQueLeGustanA red social sin publicaciones" ejercicio7casoC,
+      -- CASOS EJERCICIO 8
+      TestLabel "lesGustanLasMismasPublicaciones, red sin publicaciones" ejercicio8casoA,
+      TestLabel "lesGustanLasMismasPublicaciones, compara el mismo usuario" ejercicio8casoB,
+      TestLabel "lesGustanLasMismasPublicaciones, likean las mismas publicaciones" ejercicio8casoC,
+      TestLabel "lesGustanLasMismasPublicaciones, likean una misma publicacion pero las demas no" ejercicio8casoD
+      
     ]
 
 {- DATOS -}
