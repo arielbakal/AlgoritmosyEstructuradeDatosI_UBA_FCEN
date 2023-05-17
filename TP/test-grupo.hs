@@ -130,8 +130,3 @@ publicacionesB = [publicacion1_3, publicacion1_4, publicacion1_5, publicacion3_1
 redB = (usuariosB, relacionesB, publicacionesB)
 
 red7 =(usuariosA, relacionesA, [])
-
-
-redVacia = ([], [], [])
-
-redUnUsuario = ([usuario1], [], [])
