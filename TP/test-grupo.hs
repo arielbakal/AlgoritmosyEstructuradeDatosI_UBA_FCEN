@@ -7,6 +7,7 @@ run = runTestTT casos -- para correr los tests ejecutar este archivo y escribir 
 ejercicio1casoA = nombresDeUsuarios redA ~?= ["Teo", "Ariel", "Juan Cruz", "Luca", "Roberto Carlos"]
 ejercicio1casoB = nombresDeUsuarios redB ~?= ["Teo", "Ariel", "Luca"]
 
+ejercicio1casoC = nombresDeUsuarios ([], [], []) ~?= []
 --
 ejercicio2casoA :: Test
 ejercicio2casoA = amigosDe redA usuario1 ~?= [usuario2, usuario4]
@@ -15,12 +16,16 @@ ejercicio2casoB :: Test
 ejercicio2casoB = amigosDe redA usuario3 ~?= [usuario4, usuario5]
 
 ejercicio2casoC :: Test
-ejercicio2casoC = amigosDe redA usuario6 ~?= []
-
+ejercicio2casoC = amigosDe redA usuario6 ~?= [] 
+--
 ejercicio3casoA = cantidadDeAmigos redA usuario6 ~?= 0
 ejercicio3casoB = cantidadDeAmigos redA usuario3 ~?= 2
 ejercicio3casoC = cantidadDeAmigos redA usuario4 ~?= 3
-
+--
+ejercicio4casoA = usuarioConMasAmigos ([usuario1], [], []) ~?= usuario1
+ejercicio4casoB = usuarioConMasAmigos redA ~?= usuario4
+ejercicio4casoC = usuarioConMasAmigos ([usuario1,usuario2], [(usuario1,usuario2)], []) ~?= usuario1
+--
 ejercicio7casoA = publicacionesQueLeGustanA redA usuario6 ~?= []
 ejercicio7casoB = publicacionesQueLeGustanA redA usuario2 ~?= [publicacion1_1, publicacion3_2, publicacion4_1]
 ejercicio7casoC = publicacionesQueLeGustanA red7 usuario2 ~?= []
@@ -31,6 +36,8 @@ casos =
     [ -- CASOS EJERCICIO 1
       TestLabel "nombresDeUsuarios sin repetidos" ejercicio1casoA,
       TestLabel "nombresDeUsuarios con repetidos" ejercicio1casoB,
+
+      TestLabel "nombresDeUsuarios con red vacia" ejercicio1casoC,
       -- CASOS EJERCICIO 2
       TestLabel "amigosDe" ejercicio2casoA,
       TestLabel "amigosDe con amigos de nombre repetido" ejercicio2casoB,
@@ -39,6 +46,10 @@ casos =
       TestLabel "cantidadDeAmigos usuario sin amigos" ejercicio3casoA,
       TestLabel "cantidadDeAmigos usuario con amigos, con nombres de amigos repetidos" ejercicio3casoB,
       TestLabel "cantidadDeAmigos usuario con amigos, sin nombres de amigos repetidos" ejercicio3casoC,
+      -- CASOS EJERCICIO 4
+      TestLabel "usuarioConMasAmigos usuario unico" ejercicio4casoA,
+      TestLabel "usuarioConMasAmigos usuario con mas amigos" ejercicio4casoB,
+      TestLabel "usuarioConMasAmigos usuarios con misma cantidad de amigos" ejercicio4casoC,
       -- CASOS EJERCICIO 7
       TestLabel "publicacionesQueLeGustanA usuario sin publicaciones gustadas" ejercicio7casoA,
       TestLabel "publicacionesQueLeGustanA usuario con publicaciones gustadas" ejercicio7casoB,
@@ -119,3 +130,8 @@ publicacionesB = [publicacion1_3, publicacion1_4, publicacion1_5, publicacion3_1
 redB = (usuariosB, relacionesB, publicacionesB)
 
 red7 =(usuariosA, relacionesA, [])
+
+
+redVacia = ([], [], [])
+
+redUnUsuario = ([usuario1], [], [])
