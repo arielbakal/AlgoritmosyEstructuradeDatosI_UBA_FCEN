@@ -32,6 +32,13 @@ ejercicio4casoB = usuarioConMasAmigos redA ~?= usuario4
 ejercicio4casoC = usuarioConMasAmigos ([usuario1, usuario2], [(usuario1, usuario2)], []) ~?= usuario1
 
 --
+ejercicio5casoA = estaRobertoCarlos redA ~?= False
+
+ejercicio5casoB = estaRobertoCarlos redA ~?= False
+
+ejercicio5casoC = estaRobertoCarlos redA ~?= True
+
+--
 ejercicio7casoA = publicacionesQueLeGustanA redA usuario6 ~?= []
 
 ejercicio7casoB = publicacionesQueLeGustanA redA usuario2 ~?= [publicacion1_1, publicacion3_2, publicacion4_1]
@@ -67,6 +74,10 @@ casos =
       TestLabel "usuarioConMasAmigos usuario unico" ejercicio4casoA,
       TestLabel "usuarioConMasAmigos usuario con mas amigos" ejercicio4casoB,
       TestLabel "usuarioConMasAmigos usuarios con misma cantidad de amigos" ejercicio4casoC,
+      --CASOS EJERCICIO 5
+      TestLabel "estaRobertoCarlos lista de usuarios vacia" ejercicio5casoA
+      TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos <10" ejericio5casoB
+      TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos >10" ejercicio5asoC
       -- CASOS EJERCICIO 7
       TestLabel "publicacionesQueLeGustanA usuario sin publicaciones gustadas" ejercicio7casoA,
       TestLabel "publicacionesQueLeGustanA usuario con publicaciones gustadas" ejercicio7casoB,
