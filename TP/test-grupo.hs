@@ -38,6 +38,8 @@ ejercicio5casoB = estaRobertoCarlos redA ~?= False
 
 ejercicio5casoC = estaRobertoCarlos redC ~?= True
 
+ejercicio5casoD = estaRobertoCarlos redD ~?= False
+
 --
 ejercicio7casoA = publicacionesQueLeGustanA redA usuario6 ~?= []
 
@@ -75,9 +77,11 @@ casos =
       TestLabel "usuarioConMasAmigos usuario con mas amigos" ejercicio4casoB,
       TestLabel "usuarioConMasAmigos usuarios con misma cantidad de amigos" ejercicio4casoC,
       --CASOS EJERCICIO 5
-      TestLabel "estaRobertoCarlos lista de usuarios vacia" ejercicio5casoA
-      TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos <10" ejericio5casoB
-      TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos >10" ejercicio5asoC
+      TestLabel "estaRobertoCarlos lista de usuarios vacia" ejercicio5casoA,
+      TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos <10" ejercicio5casoB,
+      TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos >10" ejercicio5casoC,
+      TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos =10" ejercicio5casoD,
+      
       -- CASOS EJERCICIO 7
       TestLabel "publicacionesQueLeGustanA usuario sin publicaciones gustadas" ejercicio7casoA,
       TestLabel "publicacionesQueLeGustanA usuario con publicaciones gustadas" ejercicio7casoB,
@@ -199,7 +203,18 @@ relacionesC = [relacion1_2, relacion1_3, relacion1_4, relacion1_5, relacion1_6, 
 
 publicacionesC = [publicacion1_3, publicacion1_4, publicacion1_5]
 
-redC = (usuariosC, realacionesC,publicacionesC)
+redC = (usuariosC, relacionesC, publicacionesC)
 
 -- red 5 solo para caso A del ej 5
-red5= (UsuariosC,[],publicacionesC)
+red5= (usuariosC,[],publicacionesC)
+
+-- red d
+usuariosD = [usuario1, usuario2, usuario3, usuario4, usuario5, usuario6, usuario7, usuario8, usuario9, usuario10, usuario11, usuario12]
+
+relacionesD = [relacion1_2, relacion1_3, relacion1_4, relacion1_5, relacion1_6, relacion1_7, relacion1_8, relacion1_9, relacion1_10, relacion1_11]
+
+publicacionesD = [publicacion1_3, publicacion1_4, publicacion1_5]
+
+redD = (usuariosD, relacionesD, publicacionesD)
+
+s = []
