@@ -32,11 +32,11 @@ ejercicio4casoB = usuarioConMasAmigos redA ~?= usuario4
 ejercicio4casoC = usuarioConMasAmigos ([usuario1, usuario2], [(usuario1, usuario2)], []) ~?= usuario1
 
 --
-ejercicio5casoA = estaRobertoCarlos redA ~?= False
+ejercicio5casoA = estaRobertoCarlos red5 ~?= False
 
 ejercicio5casoB = estaRobertoCarlos redA ~?= False
 
-ejercicio5casoC = estaRobertoCarlos redA ~?= True
+ejercicio5casoC = estaRobertoCarlos redC ~?= True
 
 --
 ejercicio7casoA = publicacionesQueLeGustanA redA usuario6 ~?= []
@@ -104,6 +104,18 @@ usuario5 = (5, "Luca")
 
 usuario6 = (6, "Roberto Carlos")
 
+usuario7 = (7, "Martin")
+
+usuario8 = (8, "Diego")
+
+usuario9 = (9, "Maria")
+
+usuario10 = (10, "Carolina")
+
+usuario11 = (11, "Carla")
+
+usuario12 = (12,"Marta")
+
 relacion1_2 = (usuario1, usuario2)
 
 relacion1_3 = (usuario1, usuario3)
@@ -117,6 +129,22 @@ relacion2_4 = (usuario2, usuario4)
 relacion3_4 = (usuario4, usuario3)
 
 relacion3_5 = (usuario3, usuario5)
+
+relacion1_5 = (usuario1, usuario5)
+
+relacion1_6 = (usuario1, usuario6)
+
+relacion1_7 = (usuario1, usuario7)
+
+relacion1_8 = (usuario1, usuario8)
+
+relacion1_9 = (usuario1, usuario9)
+
+relacion1_10 = (usuario1, usuario10)
+
+relacion1_11 = (usuario1, usuario11)
+
+relacion1_12 = (usuario1,usuario12)
 
 publicacion1_1 = (usuario1, "Este es mi primer post", [usuario2, usuario4])
 
@@ -163,3 +191,15 @@ publicacionesB = [publicacion1_3, publicacion1_4, publicacion1_5, publicacion3_1
 redB = (usuariosB, relacionesB, publicacionesB)
 
 red7 = (usuariosA, relacionesA, [])
+
+-- red c
+usuariosC = [usuario1, usuario2, usuario3, usuario4, usuario5, usuario6, usuario7, usuario8, usuario9, usuario10, usuario11, usuario12]
+
+relacionesC = [relacion1_2, relacion1_3, relacion1_4, relacion1_5, relacion1_6, relacion1_7, relacion1_8, relacion1_9, relacion1_10, relacion1_11, relacion1_12]
+
+publicacionesC = [publicacion1_3, publicacion1_4, publicacion1_5]
+
+redC = (usuariosC, realacionesC,publicacionesC)
+
+-- red 5 solo para caso A del ej 5
+red5= (UsuariosC,[],publicacionesC)

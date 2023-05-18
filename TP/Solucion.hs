@@ -104,7 +104,7 @@ usuarioConMasAmigosAux red (siguiente : us) actual
 estaRobertoCarlos :: RedSocial -> Bool
 estaRobertoCarlos ([], _, _) = False
 estaRobertoCarlos (us, rels, pubs)
-  | cantidadDeAmigos (us, rels, pubs) (head us) > 1000000 = True
+  | cantidadDeAmigos (us, rels, pubs) (head us) > 10 = True
   | otherwise = estaRobertoCarlos (tail us, rels, pubs)
 
 {-  -}
