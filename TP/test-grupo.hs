@@ -24,7 +24,7 @@ ejercicio3casoB = cantidadDeAmigos redA usuario3 ~?= 2
 
 ejercicio3casoC = cantidadDeAmigos redA usuario4 ~?= 3
 
---
+-- 
 ejercicio4casoA = usuarioConMasAmigos ([usuario1], [], []) ~?= usuario1
 
 ejercicio4casoB = usuarioConMasAmigos redA ~?= usuario4
@@ -46,9 +46,9 @@ ejercicio6casoA = publicacionesDe ([usuario1], [], []) usuario1 ~?= []
 
 ejercicio6casoB = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1, usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1, usuario2])]
 
-ejercicio6casoC = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1, usuario2])]) usuario2 ~?= []
+ejercicio6casoC = publicacionesDe ([usuario1, usuario2], [], [(usuario2, "Hi", [usuario1, usuario2])]) usuario1 ~?= []
 
--- ejercicio6casoD = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2]), (usuario1, "Hi", [usuario1, usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1,usuario2])]
+ejercicio6casoD = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2]), (usuario1, "Hi", [usuario1, usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1,usuario2])]
 
 --
 ejercicio7casoA = publicacionesQueLeGustanA redA usuario6 ~?= []
@@ -57,6 +57,7 @@ ejercicio7casoB = publicacionesQueLeGustanA redA usuario2 ~?= [publicacion1_1, p
 
 ejercicio7casoC = publicacionesQueLeGustanA red7 usuario2 ~?= []
 
+ejercicio7casoD = publicacionesQueLeGustanA ([usuario1, usuario2], [], [(usuario2, "Hi", [usuario1,usuario2]),(usuario2, "Hi", [usuario1,usuario2])]) usuario1 ~?= [(usuario2, "Hi", [usuario1,usuario2])] 
 --
 
 ejercicio8casoA = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], []) usuario1 usuario2 ~?= True
@@ -68,24 +69,17 @@ ejercicio8casoC = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(u
 ejercicio8casoD = lesGustanLasMismasPublicaciones redB usuario2 usuario5 ~?= False
 
 --
-
- ejercicio9casoA = tieneUnSeguidorFiel ([usuario1, usuario2], [], []) usuario1 ~?= False 
--- red sin publicaciones
+ejercicio9casoA = tieneUnSeguidorFiel ([usuario1], [], []) usuario1 ~?= False
 
 ejercicio9casoB = tieneUnSeguidorFiel ([usuario1], [], [(usuario1, "Hola", [])]) usuario1 ~?= False
--- red con un solo usuario
 
-ejercicio9casoC = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario2, "Hola", [])]) usuario1 ~?= False 
--- red con publicaciones, pero usuario sin pulbicacion
+ejercicio9casoC = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Hola", [])]) usuario1 ~?= False
 
-ejercicio9casoD = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Hola", [])]) usuario1 ~?= False
--- 
+ejercicio9casoD = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Hola", []), (usuario1, "Chau", [usuario2])]) usuario1 ~?= False
 
 ejercicio9casoE = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Hola", [usuario2])]) usuario1 ~?= True
 
-ejercicio9casoF = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Hola", [usuario1])]) usuario1 ~?= False
-
-ejercicio9casoG = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario2, "Hola", [usuario2])]) usuario1 ~?= True
+ejercicio9casoF = tieneUnSeguidorFiel ([usuario1, usuario2, usuario3], [], [(usuario1, "Hola", [usuario2, usuario3]), (usuario1, "Chau", [usuario3])]) usuario1 ~?= True
 
 --
 ejercicio10casoA = existeSecuenciaDeAmigos redA usuario1 usuario5 ~?= True
@@ -125,23 +119,27 @@ casos =
       TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos >10" ejercicio5casoC,
       TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos =10" ejercicio5casoD,
       -- CASOS EJERCICIO 6
-      TestLabel "publicacionesDe, red sin publicaciones" ejercicio6casoA1,
+      TestLabel "publicacionesDe, red sin publicaciones" ejercicio6casoA,
       TestLabel "publicacionesDe, publicaciones del usuario" ejercicio6casoB,
       TestLabel "publicacionesDe, usuario sin publicaciones" ejercicio6casoC,
-      -- TestLabel "publicacionesDe, publicaciones repetidas" ejercicio6casoD,   la funcion debe eliminar publicaciones repetidas
+      TestLabel "publicacionesDe, publicaciones repetidas" ejercicio6casoD,  
       -- CASOS EJERCICIO 7
       TestLabel "publicacionesQueLeGustanA usuario sin publicaciones gustadas" ejercicio7casoA,
       TestLabel "publicacionesQueLeGustanA usuario con publicaciones gustadas" ejercicio7casoB,
       TestLabel "publicacionesQueLeGustanA red social sin publicaciones" ejercicio7casoC,
+      TestLabel "publicacionesQueLeGustanA usuario con likes en publicaciones repetidas" ejercicio7casoD,
       -- CASOS EJERCICIO 8
       TestLabel "lesGustanLasMismasPublicaciones, red sin publicaciones" ejercicio8casoA,
       TestLabel "lesGustanLasMismasPublicaciones, compara el mismo usuario" ejercicio8casoB,
       TestLabel "lesGustanLasMismasPublicaciones, likean las mismas publicaciones" ejercicio8casoC,
       TestLabel "lesGustanLasMismasPublicaciones, likean una misma publicacion pero las demas no" ejercicio8casoD,
       -- CASOS EJERCICIO 9
-      -- TestLabel "tieneUnSeguidorFiel usuario sin publicaciones" ejercicio9casoA,
-      TestLabel "tieneUnSeguidorFiel usuario con publicaciones sin seguidor fiel " ejercicio9casoB,
-      TestLabel "tieneUnSeguidorFiel usuario con publicaciones con seguidor fiel " ejercicio9casoC,
+      TestLabel "tieneUnSeguidorFiel red sin publicaciones del usuario parametro" ejercicio9casoA,
+      TestLabel "tieneUnSeguidorFiel red con usuario unico" ejercicio9casoB,
+      TestLabel "tieneUnSeguidorFiel publicaciones de usuario parametro sin likes" ejercicio9casoC,
+      TestLabel "tieneUnSeguidorFiel publicaciones del ususario parametro con likes pero no en todas" ejercicio9casoD,
+      TestLabel "tieneUnSeguidorFiel el ususario parametro tiene seguidor fiel" ejercicio9casoE,
+      TestLabel "tieneUnSeguidorFiel hay mas de dos usuarios y el usuario parametro tiene un seguidor fiel" ejercicio9casoF,
       -- CASOS EJERCICIO 10
       TestLabel "existeSecuenciaDeAmigos con red sin relaciones" ejercicio10casoD, -- False
       TestLabel "existeSecuenciaDeAmigos con secuencia inválida" ejercicio10casoC, -- False
