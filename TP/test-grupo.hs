@@ -32,19 +32,23 @@ ejercicio4casoB = usuarioConMasAmigos redA ~?= usuario4
 ejercicio4casoC = usuarioConMasAmigos ([usuario1, usuario2], [(usuario1, usuario2)], []) ~?= usuario1
 
 --
-ejercicio5casoA = estaRobertoCarlos ([],[],[]) ~?= False
+ejercicio5casoA = estaRobertoCarlos ([], [], []) ~?= False
 
 ejercicio5casoB = estaRobertoCarlos redA ~?= False
 
 ejercicio5casoC = estaRobertoCarlos redC ~?= True
 
 ejercicio5casoD = estaRobertoCarlos redD ~?= False
+
 --
 
 ejercicio6casoA = publicacionesDe ([usuario1], [], []) usuario1 ~?= []
-ejercicio6casoB = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1,usuario2])]
-ejercicio6casoC = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2])]) usuario2 ~?= []
---ejercicio6casoD = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2]), (usuario1, "Hi", [usuario1, usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1,usuario2])]
+
+ejercicio6casoB = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1, usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1, usuario2])]
+
+ejercicio6casoC = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1, usuario2])]) usuario2 ~?= []
+
+-- ejercicio6casoD = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2]), (usuario1, "Hi", [usuario1, usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1,usuario2])]
 
 --
 ejercicio7casoA = publicacionesQueLeGustanA redA usuario6 ~?= []
@@ -55,17 +59,17 @@ ejercicio7casoC = publicacionesQueLeGustanA red7 usuario2 ~?= []
 
 --
 
-ejercicio8casoA = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], []) usuario1 usuario2 ~?= True 
+ejercicio8casoA = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], []) usuario1 usuario2 ~?= True
 
-ejercicio8casoB = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2])]) usuario1 usuario1 ~?= True
+ejercicio8casoB = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1, usuario2])]) usuario1 usuario1 ~?= True
 
-ejercicio8casoC = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2])]) usuario1 usuario2 ~?= True
+ejercicio8casoC = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1, usuario2])]) usuario1 usuario2 ~?= True
 
 ejercicio8casoD = lesGustanLasMismasPublicaciones redB usuario2 usuario5 ~?= False
 
 --
 
-ejercicio9casoA = tieneUnSeguidorFiel ([usuario1, usuario2], [], []) usuario1 ~?= False 
+ ejercicio9casoA = tieneUnSeguidorFiel ([usuario1, usuario2], [], []) usuario1 ~?= False 
 -- red sin publicaciones
 
 ejercicio9casoB = tieneUnSeguidorFiel ([usuario1], [], [(usuario1, "Hola", [])]) usuario1 ~?= False
@@ -83,6 +87,18 @@ ejercicio9casoF = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Ho
 
 ejercicio9casoG = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario2, "Hola", [usuario2])]) usuario1 ~?= True
 
+--
+ejercicio10casoA = existeSecuenciaDeAmigos redA usuario1 usuario5 ~?= True
+
+ejercicio10casoB = existeSecuenciaDeAmigos redA usuario1 usuario2 ~?= True
+
+ejercicio10casoC = existeSecuenciaDeAmigos redA usuario5 usuario6 ~?= False
+
+ejercicio10casoD = existeSecuenciaDeAmigos redE usuario1 usuario2 ~?= False
+
+ejercicio10casoE = existeSecuenciaDeAmigos redA usuario1 usuario1 ~?= True
+
+ejercicio10casoF = existeSecuenciaDeAmigos redF usuario1 usuario1 ~?= True
 
 {- Y AGREGARLOS ACÁ con un nombre descriptivo -}
 casos =
@@ -112,7 +128,7 @@ casos =
       TestLabel "publicacionesDe, red sin publicaciones" ejercicio6casoA1,
       TestLabel "publicacionesDe, publicaciones del usuario" ejercicio6casoB,
       TestLabel "publicacionesDe, usuario sin publicaciones" ejercicio6casoC,
-      --TestLabel "publicacionesDe, publicaciones repetidas" ejercicio6casoD,   la funcion debe eliminar publicaciones repetidas
+      -- TestLabel "publicacionesDe, publicaciones repetidas" ejercicio6casoD,   la funcion debe eliminar publicaciones repetidas
       -- CASOS EJERCICIO 7
       TestLabel "publicacionesQueLeGustanA usuario sin publicaciones gustadas" ejercicio7casoA,
       TestLabel "publicacionesQueLeGustanA usuario con publicaciones gustadas" ejercicio7casoB,
@@ -122,12 +138,17 @@ casos =
       TestLabel "lesGustanLasMismasPublicaciones, compara el mismo usuario" ejercicio8casoB,
       TestLabel "lesGustanLasMismasPublicaciones, likean las mismas publicaciones" ejercicio8casoC,
       TestLabel "lesGustanLasMismasPublicaciones, likean una misma publicacion pero las demas no" ejercicio8casoD,
-      
       -- CASOS EJERCICIO 9
-      TestLabel "tieneUnSeguidorFiel usuario sin publicaciones" ejercicio9casoA,      
+      -- TestLabel "tieneUnSeguidorFiel usuario sin publicaciones" ejercicio9casoA,
       TestLabel "tieneUnSeguidorFiel usuario con publicaciones sin seguidor fiel " ejercicio9casoB,
-      TestLabel "tieneUnSeguidorFiel usuario con publicaciones con seguidor fiel " ejercicio9casoC
-
+      TestLabel "tieneUnSeguidorFiel usuario con publicaciones con seguidor fiel " ejercicio9casoC,
+      -- CASOS EJERCICIO 10
+      TestLabel "existeSecuenciaDeAmigos con red sin relaciones" ejercicio10casoD, -- False
+      TestLabel "existeSecuenciaDeAmigos con secuencia inválida" ejercicio10casoC, -- False
+      TestLabel "existeSecuenciaDeAmigos con secuencia válida" ejercicio10casoA, -- True
+      TestLabel "existeSecuenciaDeAmigos con usuarios amigos" ejercicio10casoB, -- True
+      TestLabel "existeSecuenciaDeAmigos con usuario inicial = usuario final" ejercicio10casoE, -- True
+      TestLabel "existeSecuenciaDeAmigos con usuario inicial = usuario final y solo una relacion" ejercicio10casoF -- True
     ]
 
 {- DATOS -}
@@ -154,7 +175,7 @@ usuario10 = (10, "Carolina")
 
 usuario11 = (11, "Carla")
 
-usuario12 = (12,"Marta")
+usuario12 = (12, "Marta")
 
 relacion1_2 = (usuario1, usuario2)
 
@@ -184,7 +205,7 @@ relacion1_10 = (usuario1, usuario10)
 
 relacion1_11 = (usuario1, usuario11)
 
-relacion1_12 = (usuario1,usuario12)
+relacion1_12 = (usuario1, usuario12)
 
 publicacion1_1 = (usuario1, "Este es mi primer post", [usuario2, usuario4])
 
@@ -212,15 +233,15 @@ publicacion4_2 = (usuario4, "I am Bob", [])
 
 publicacion4_3 = (usuario4, "Just kidding, i am Mariela", [usuario1, usuario3])
 
-publicacion5_1 = (usuario5,"Alea iacta est", [usuario1, usuario3])
- 
-publicacion5_2 = (usuario5,"Ab imo pectore", [usuario2, usuario3])
- 
-publicacion5_3 = (usuario5,"Carpe diem", [usuario4, usuario3])
- 
-publicacion5_4 = (usuario5,"Mens sana in corpore sano", [usuario3])
- 
-publicacion5_5 = (usuario5,"Errare humanum est", [usuario3])
+publicacion5_1 = (usuario5, "Alea iacta est", [usuario1, usuario3])
+
+publicacion5_2 = (usuario5, "Ab imo pectore", [usuario2, usuario3])
+
+publicacion5_3 = (usuario5, "Carpe diem", [usuario4, usuario3])
+
+publicacion5_4 = (usuario5, "Mens sana in corpore sano", [usuario3])
+
+publicacion5_5 = (usuario5, "Errare humanum est", [usuario3])
 
 -- red A
 usuariosA = [usuario1, usuario2, usuario3, usuario4, usuario6]
@@ -247,7 +268,7 @@ usuariosC = [usuario1, usuario2, usuario3, usuario4, usuario5, usuario6, usuario
 
 relacionesC = [relacion1_2, relacion1_3, relacion1_4, relacion1_5, relacion1_6, relacion1_7, relacion1_8, relacion1_9, relacion1_10, relacion1_11, relacion1_12]
 
-publicacionesC = [publicacion1_3, publicacion1_4, publicacion1_5,publicacion5_1, publicacion5_2, publicacion5_3, publicacion5_4, publicacion5_5]
+publicacionesC = [publicacion1_3, publicacion1_4, publicacion1_5, publicacion5_1, publicacion5_2, publicacion5_3, publicacion5_4, publicacion5_5]
 
 redC = (usuariosC, relacionesC, publicacionesC)
 
@@ -260,3 +281,8 @@ publicacionesD = [publicacion1_3, publicacion1_4, publicacion1_5]
 
 redD = (usuariosD, relacionesD, publicacionesD)
 
+redE = (usuariosA, [], publicacionesA)
+
+relacionesF = [relacion1_2]
+
+redF = (usuariosA, relacionesF, publicacionesA)
