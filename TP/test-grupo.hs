@@ -39,6 +39,12 @@ ejercicio5casoB = estaRobertoCarlos redA ~?= False
 ejercicio5casoC = estaRobertoCarlos redC ~?= True
 
 ejercicio5casoD = estaRobertoCarlos redD ~?= False
+--
+
+ejercicio6casoA = publicacionesDe ([usuario1], [], []) usuario1 ~?= []
+ejercicio6casoB = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1,usuario2])]
+ejercicio6casoC = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2])]) usuario2 ~?= []
+--ejercicio6casoD = publicacionesDe ([usuario1, usuario2], [], [(usuario1, "Hi", [usuario1,usuario2]), (usuario1, "Hi", [usuario1, usuario2])]) usuario1 ~?= [(usuario1, "Hi", [usuario1,usuario2])]
 
 --
 ejercicio7casoA = publicacionesQueLeGustanA redA usuario6 ~?= []
@@ -89,7 +95,11 @@ casos =
       TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos <10" ejercicio5casoB,
       TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos >10" ejercicio5casoC,
       TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos =10" ejercicio5casoD,
-      
+      -- CASOS EJERCICIO 6
+      TestLabel "publicacionesDe, red sin publicaciones" ejercicio6casoA,
+      TestLabel "publicacionesDe, publicaciones del usuario" ejercicio6casoB,
+      TestLabel "publicacionesDe, usuario sin publicaciones" ejercicio6casoC,
+      --TestLabel "publicacionesDe, publicaciones repetidas" ejercicio6casoD,   la funcion debe eliminar publicaciones repetidas
       -- CASOS EJERCICIO 7
       TestLabel "publicacionesQueLeGustanA usuario sin publicaciones gustadas" ejercicio7casoA,
       TestLabel "publicacionesQueLeGustanA usuario con publicaciones gustadas" ejercicio7casoB,

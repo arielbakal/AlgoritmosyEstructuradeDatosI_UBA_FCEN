@@ -114,6 +114,7 @@ estaRobertoCarlos (us, rels, pubs)
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
 publicacionesDe (us, rels, []) u = []
 publicacionesDe (us, rels, p : pubs) u
+-- | p == head pubs = publicacionesDe (us, rels, pubs) u
   | u == usuarioDePublicacion p = p : publicacionesDe (us, rels, pubs) u
   | otherwise = publicacionesDe (us, rels, pubs) u
 
