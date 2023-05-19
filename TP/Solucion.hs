@@ -143,6 +143,7 @@ lesGustanLasMismasPublicaciones (us, rels, p : pubs) u1 u2 =
 {- EJERCICIO 9 -}
 -- Si existe un usuario que se encuentre en todas las listas de likes de las publicaciones del usuario parámetro, devolvera True.
 tieneUnSeguidorFiel :: RedSocial -> Usuario -> Bool
+tieneUnSeguidorFiel (us, rels, []) u = False
 tieneUnSeguidorFiel ([], rels, pubs) u = False
 tieneUnSeguidorFiel (us, rels, pubs) u
   | head us == u = tieneUnSeguidorFiel (tail us, rels, pubs) u

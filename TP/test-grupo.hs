@@ -64,11 +64,24 @@ ejercicio8casoC = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(u
 ejercicio8casoD = lesGustanLasMismasPublicaciones redB usuario2 usuario5 ~?= False
 
 --
---ejercicio9casoA = tieneUnSeguidorFiel redB usuario5 ~?= False          no va pq |publicacionesDe(red, u)| > 0
 
-ejercicio9casoB = tieneUnSeguidorFiel redB usuario1 ~?= False
+ejercicio9casoA = tieneUnSeguidorFiel ([usuario1, usuario2], [], []) usuario1 ~?= False 
+-- red sin publicaciones
 
-ejercicio9casoC = tieneUnSeguidorFiel redC usuario5 ~?= True
+ejercicio9casoB = tieneUnSeguidorFiel ([usuario1], [], [(usuario1, "Hola", [])]) usuario1 ~?= False
+-- red con un solo usuario
+
+ejercicio9casoC = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario2, "Hola", [])]) usuario1 ~?= False 
+-- red con publicaciones, pero usuario sin pulbicacion
+
+ejercicio9casoD = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Hola", [])]) usuario1 ~?= False
+-- 
+
+ejercicio9casoE = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Hola", [usuario2])]) usuario1 ~?= True
+
+ejercicio9casoF = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario1, "Hola", [usuario1])]) usuario1 ~?= False
+
+ejercicio9casoG = tieneUnSeguidorFiel ([usuario1, usuario2], [], [(usuario2, "Hola", [usuario2])]) usuario1 ~?= True
 
 
 {- Y AGREGARLOS ACÁ con un nombre descriptivo -}
@@ -96,7 +109,7 @@ casos =
       TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos >10" ejercicio5casoC,
       TestLabel "estaRobertoCarlos usuario con cantidadDeAmigos =10" ejercicio5casoD,
       -- CASOS EJERCICIO 6
-      TestLabel "publicacionesDe, red sin publicaciones" ejercicio6casoA,
+      TestLabel "publicacionesDe, red sin publicaciones" ejercicio6casoA1,
       TestLabel "publicacionesDe, publicaciones del usuario" ejercicio6casoB,
       TestLabel "publicacionesDe, usuario sin publicaciones" ejercicio6casoC,
       --TestLabel "publicacionesDe, publicaciones repetidas" ejercicio6casoD,   la funcion debe eliminar publicaciones repetidas
@@ -111,7 +124,7 @@ casos =
       TestLabel "lesGustanLasMismasPublicaciones, likean una misma publicacion pero las demas no" ejercicio8casoD,
       
       -- CASOS EJERCICIO 9
-      --TestLabel "tieneUnSeguidorFiel usuario sin publicaciones" ejercicio9casoA,      
+      TestLabel "tieneUnSeguidorFiel usuario sin publicaciones" ejercicio9casoA,      
       TestLabel "tieneUnSeguidorFiel usuario con publicaciones sin seguidor fiel " ejercicio9casoB,
       TestLabel "tieneUnSeguidorFiel usuario con publicaciones con seguidor fiel " ejercicio9casoC
 
