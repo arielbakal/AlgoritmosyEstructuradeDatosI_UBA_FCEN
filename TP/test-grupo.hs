@@ -58,7 +58,7 @@ ejercicio8casoC = lesGustanLasMismasPublicaciones ([usuario1, usuario2], [], [(u
 ejercicio8casoD = lesGustanLasMismasPublicaciones redB usuario2 usuario5 ~?= False
 
 --
-ejercicio9casoA = tieneUnSeguidorFiel redB usuario5 ~?= False
+--ejercicio9casoA = tieneUnSeguidorFiel redB usuario5 ~?= False          no va pq |publicacionesDe(red, u)| > 0
 
 ejercicio9casoB = tieneUnSeguidorFiel redB usuario1 ~?= False
 
@@ -98,12 +98,12 @@ casos =
       TestLabel "lesGustanLasMismasPublicaciones, red sin publicaciones" ejercicio8casoA,
       TestLabel "lesGustanLasMismasPublicaciones, compara el mismo usuario" ejercicio8casoB,
       TestLabel "lesGustanLasMismasPublicaciones, likean las mismas publicaciones" ejercicio8casoC,
-      TestLabel "lesGustanLasMismasPublicaciones, likean una misma publicacion pero las demas no" ejercicio8casoD
+      TestLabel "lesGustanLasMismasPublicaciones, likean una misma publicacion pero las demas no" ejercicio8casoD,
       
       -- CASOS EJERCICIO 9
-      TestLabel "tieneUnSeguidorFiel usuario sin publicaciones" ejercicio9casoA,
+      --TestLabel "tieneUnSeguidorFiel usuario sin publicaciones" ejercicio9casoA,      
       TestLabel "tieneUnSeguidorFiel usuario con publicaciones sin seguidor fiel " ejercicio9casoB,
-      TestLabel "tieneUnSeguidorFiel usuario con publicaciones con seguidor fiel " ejercicio9casoC,
+      TestLabel "tieneUnSeguidorFiel usuario con publicaciones con seguidor fiel " ejercicio9casoC
 
     ]
 
@@ -224,7 +224,7 @@ usuariosC = [usuario1, usuario2, usuario3, usuario4, usuario5, usuario6, usuario
 
 relacionesC = [relacion1_2, relacion1_3, relacion1_4, relacion1_5, relacion1_6, relacion1_7, relacion1_8, relacion1_9, relacion1_10, relacion1_11, relacion1_12]
 
-publicacionesC = [publicacion1_3, publicacion1_4, publicacion1_5,publicacion5_1, publicacion5_2, publicacion5_3, publicacion5_4, publicacion5_5,]
+publicacionesC = [publicacion1_3, publicacion1_4, publicacion1_5,publicacion5_1, publicacion5_2, publicacion5_3, publicacion5_4, publicacion5_5]
 
 redC = (usuariosC, relacionesC, publicacionesC)
 
