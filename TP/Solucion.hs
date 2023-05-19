@@ -84,7 +84,7 @@ cantidadDeElementos :: [a] -> Int
 cantidadDeElementos [] = 0
 cantidadDeElementos (x : xs) = 1 + cantidadDeElementos xs
 
-{- -}
+{-  -}
 
 {- EJERCICIO 4 -}
 -- Mantiene el usuario con más amigos como parámetro en la función auxiliar, para recorrer la lista de usuarios y comparar la cantidad de amigos de cada uno.
@@ -112,21 +112,26 @@ estaRobertoCarlos (us, rels, pubs)
 {- EJERCICIO 6 -}
 -- Recupera una lista con las publicaciones del usuario parámetro.
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
-publicacionesDe (us, rels, []) u = []
-publicacionesDe (us, rels, p : pubs) u
-  -- \| p == head pubs = publicacionesDe (us, rels, pubs) u
-  | u == usuarioDePublicacion p = p : publicacionesDe (us, rels, pubs) u
-  | otherwise = publicacionesDe (us, rels, pubs) u
+publicacionesDe red u = limpiarRepetidos(publicacionesDeConRepetidos red u) 
+
+publicacionesDeConRepetidos :: RedSocial -> Usuario -> [Publicacion]
+publicacionesDeConRepetidos (us, rels, []) u = []
+publicacionesDeConRepetidos (us, rels, p : pubs) u
+  | u == usuarioDePublicacion p = p : publicacionesDeConRepetidos (us, rels, pubs) u
+  | otherwise = publicacionesDeConRepetidos (us, rels, pubs) u
 
 {-  -}
 
 {- EJERCICIO 7 -}
 -- Devuelve todas las publicaciones en las cuales el usuario dado se encuentre en la lista de likes de dicha publicación.
 publicacionesQueLeGustanA :: RedSocial -> Usuario -> [Publicacion]
-publicacionesQueLeGustanA (us, rels, []) u = []
-publicacionesQueLeGustanA (us, rels, p : pubs) u
-  | pertenece u (likesDePublicacion p) = p : publicacionesQueLeGustanA (us, rels, pubs) u
-  | otherwise = publicacionesQueLeGustanA (us, rels, pubs) u
+publicacionesQueLeGustanA red u = limpiarRepetidos (publicacionesQueLeGustanAConRepetidos red u)
+
+publicacionesQueLeGustanAConRepetidos :: RedSocial -> Usuario -> [Publicacion]
+publicacionesQueLeGustanAConRepetidos (us, rels, []) u = []
+publicacionesQueLeGustanAConRepetidos (us, rels, p : pubs) u
+  | pertenece u (likesDePublicacion p) = p : publicacionesQueLeGustanAConRepetidos (us, rels, pubs) u
+  | otherwise = publicacionesQueLeGustanAConRepetidos (us, rels, pubs) u
 
 {-  -}
 
