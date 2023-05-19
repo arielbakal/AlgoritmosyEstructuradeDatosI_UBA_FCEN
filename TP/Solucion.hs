@@ -114,7 +114,7 @@ estaRobertoCarlos (us, rels, pubs)
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
 publicacionesDe (us, rels, []) u = []
 publicacionesDe (us, rels, p : pubs) u
--- | p == head pubs = publicacionesDe (us, rels, pubs) u
+  -- \| p == head pubs = publicacionesDe (us, rels, pubs) u
   | u == usuarioDePublicacion p = p : publicacionesDe (us, rels, pubs) u
   | otherwise = publicacionesDe (us, rels, pubs) u
 
@@ -163,7 +163,7 @@ incluido l1 l2
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
 existeSecuenciaDeAmigos (users, rels, pubs) usuarioInicial usuarioFinal
   | [] == relacionesDeUsuarioInicial = False
-  | siguienteUsuario == usuarioFinal = True
+  | siguienteUsuario == usuarioFinal || usuarioInicial == usuarioFinal = True
   | otherwise =
       existeSecuenciaDeAmigos (users, listaSinRelacion, pubs) usuarioInicial usuarioFinal
         || existeSecuenciaDeAmigos (users, listaSinRelacion, pubs) siguienteUsuario usuarioFinal
