@@ -6,8 +6,17 @@ from typing import Tuple
 # t: Tuple[str,str]  <--Este es un ejemplo para una tupla de strings.
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> int :
-  # definir esta función 
-  return 0
+    
+  if origen == destino:
+    return 0
+
+  for vuelo in vuelos:
+    if vuelo[0] == origen:
+      cantidad = sePuedeLlegar(vuelo[1], destino, vuelos)
+      if cantidad != -1:
+        return 1 + cantidad
+
+  return -1
 
 if __name__ == '__main__':
   origen = input()
