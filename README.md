@@ -1,4 +1,4 @@
-## Algoritmos y Estructura de Datos I 2C2022
+## Algoritmos y Estructuras de Datos I 2C2022
 
 #### Trabajo Práctico
 | TP  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/TP/enunciado%20-%20v2.1.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/TP/Solucion.hs) |
