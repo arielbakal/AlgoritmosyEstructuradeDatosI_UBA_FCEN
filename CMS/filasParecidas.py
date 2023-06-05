@@ -6,6 +6,8 @@ from typing import List
 def filasParecidas(matriz: List[List[int]]) -> bool :
   res: bool = True
   enteros: List[int] = []
+
+  # Falta caso para len(matriz) == 1
   
   if len(matriz) > 1:
     for i in range(1, len(matriz), 1):
