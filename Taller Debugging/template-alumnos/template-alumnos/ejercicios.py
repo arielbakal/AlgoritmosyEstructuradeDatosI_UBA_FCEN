@@ -6,7 +6,7 @@ import math
 def esta_ordenado_asc(v):
     i = 0
     longitud = len(v)
-    esMenor = False
+    esMenor = True
     while i <= longitud - 2 and esMenor:
         esMenor = v[i] <= v[i + 1]
         i += 1
@@ -28,7 +28,7 @@ def esta_ordenado(v):
     if longitud == 0 or longitud == 1:
         return True
     else:
-        return esta_ordenado_desc(v) and esta_ordenado_asc(v)
+        return esta_ordenado_desc(v) or esta_ordenado_asc(v)
 
 
 
@@ -85,12 +85,6 @@ def desvio_estandar(v: list[float]):
       return suma / longitud
     
     return math.sqrt(suma_de_cuadrados(v) / len(v))
-
-
-
-
-
-
 
 
 #************* Ejercicio 5 *************/
