@@ -1,4 +1,2 @@
 Hola mi nombre es Ariel,
-# comentario
-    # otro comentario
 Soy estudiante de Ciencia de Datos y Web/Mobile developer
