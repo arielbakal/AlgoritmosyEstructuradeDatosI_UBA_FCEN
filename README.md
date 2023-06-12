@@ -26,9 +26,10 @@
 | 4  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia4.pdf) |  |
 | 5  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia5.pdf) |  |
 | 6  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia6.pdf) |  |
-| 7  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia7.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia7.ipynb) |
-| 8  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia8.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia8.ipynb) |
-| 9  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia9.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia9.ipynb) |
+| 7  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia7.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia7/guia7.ipynb) |
+| 8  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia8.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia8/guia8.ipynb) |
+| 9  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia9.pdf) |  |
+| 10  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia10.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia10/guia10.ipynb) |
 
 
 
