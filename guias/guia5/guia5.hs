@@ -4,7 +4,8 @@
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 import Distribution.InstalledPackageInfo (InstalledPackageInfo(includeDirs))
 import Distribution.Types.IncludeRenaming (IncludeRenaming(IncludeRenaming))
-import Text.XHtml (rev)
+import Text.XHtml (rev, multiple)
+import Distribution.Simple.Test.Log (summarizePackage)
 
 -- Ejercicio 1
 
@@ -93,4 +94,55 @@ mismosElementos x y = incluido x y && incluido y x
 -- 2.9
 capicua :: (Eq t) => [t] -> Bool
 capicua xs = reverso xs == xs 
+
+-- Ejercicio 3
+
+-- 3.1
+sumatoria :: [Integer] -> Integer
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+--3.2
+productoria :: [Integer] -> Integer
+productoria [] = 0
+productoria [x] = x
+productoria (x:xs) = x * productoria xs
+
+--3.3
+maximo :: [Integer] -> Integer
+maximo [x] = x
+maximo (x:xs) | x > head xs = maximo (x : tail xs)
+              | otherwise = maximo xs
+
+--3.4
+sumarN :: Integer -> [Integer] -> [Integer]
+sumarN _ [] = []
+sumarN n (x:xs) = [x + n] ++ sumarN n xs
+
+--3.5
+sumarElPrimero :: [Integer] -> [Integer]
+sumarElPrimero (x:xs) = sumarN x (x:xs)
+
+--3.6
+sumarElUltimo :: [Integer] -> [Integer]
+sumarElUltimo (x:xs) = reverso ( sumarElPrimero ( reverso(x:xs) ) )
+
+--3.7
+pares :: [Integer] -> [Integer]
+pares [] = []
+pares (x:xs) | mod x 2 == 0 = [x] ++ pares xs
+             | otherwise = pares xs
+
+--3.8
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+multiplosDeN _ [] = []
+multiplosDeN 0 xs = xs
+multiplosDeN n (x:xs) | mod x n == 0 = [x] ++ multiplosDeN n xs
+                      | otherwise = multiplosDeN n xs
+
+--3.9
+ordenar :: [Integer] -> [Integer]
+ordenar [] = []
+ordenar xs = ordenar ( quitar (maximo xs) xs ) ++ [maximo xs]
+
 
