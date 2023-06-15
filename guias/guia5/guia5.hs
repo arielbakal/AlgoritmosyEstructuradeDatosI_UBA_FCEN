@@ -1,13 +1,3 @@
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Redundant bracket" #-}
-{-# HLINT ignore "Use foldr" #-}
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
-import Distribution.InstalledPackageInfo (InstalledPackageInfo(includeDirs))
-import Distribution.Types.IncludeRenaming (IncludeRenaming(IncludeRenaming))
-import Text.XHtml (rev, multiple)
-import Distribution.Simple.Test.Log (summarizePackage)
-import Control.Monad.Cont (cont)
-
 -- Ejercicio 1
 
 -- 1.1
