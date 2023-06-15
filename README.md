@@ -24,7 +24,7 @@
 | 2  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia2.pdf) |  |
 | 3  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia3.pdf) |  |
 | 4  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia4.pdf) |  |
-| 5  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia5.pdf) |  |
+| 5  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia5.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia5/guia5.hs) |
 | 6  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia6.pdf) |  |
 | 7  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia7.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia7/guia7.ipynb) |
 | 8  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia8.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/guias/guia8/guia8.ipynb) |
