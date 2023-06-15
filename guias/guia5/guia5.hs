@@ -6,6 +6,7 @@ import Distribution.InstalledPackageInfo (InstalledPackageInfo(includeDirs))
 import Distribution.Types.IncludeRenaming (IncludeRenaming(IncludeRenaming))
 import Text.XHtml (rev, multiple)
 import Distribution.Simple.Test.Log (summarizePackage)
+import Control.Monad.Cont (cont)
 
 -- Ejercicio 1
 
@@ -146,3 +147,62 @@ ordenar [] = []
 ordenar xs = ordenar ( quitar (maximo xs) xs ) ++ [maximo xs]
 
 
+-- Ejercicio 4
+
+--4.1
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos [x] = [x]
+sacarBlancosRepetidos (x:y:xs) | x == ' ' && y == ' ' = [' '] ++ sacarBlancosRepetidos xs 
+                               | otherwise = [x] ++ [y] ++ sacarBlancosRepetidos xs 
+
+sacarBlancosRepetidos2 :: [Char] -> [Char]
+sacarBlancosRepetidos2 [] = []
+sacarBlancosRepetidos2 [x] = [x]
+sacarBlancosRepetidos2 (x:y:xs) | x == ' ' && y == ' ' = (' ' : sacarBlancosRepetidos2 xs )
+                                | otherwise = (x:y: sacarBlancosRepetidos2 xs )
+
+--4.2
+contarPalabras :: [Char] -> Integer
+contarPalabras [] = 0
+contarPalabras [x] | x == ' ' = 0  
+                   | otherwise = 1
+contarPalabras (x:xs) | x == ' ' = 1 + contarPalabras xs
+                      | otherwise = contarPalabras xs
+
+-- Ejercicio 5
+
+--5.1
+nat2bin :: Integer -> [Integer]
+nat2bin 0 = []
+nat2bin n = nat2bin (n `div` 2) ++ [n `mod` 2]
+
+--5.2
+bin2nat :: [Integer] -> Integer
+bin2nat [] = 0
+bin2nat (x:xs) = x * 2^(longitud xs) + bin2nat xs
+
+-- Ejercicio 6
+
+type Set a = [a]
+
+vacio :: Set Int
+vacio = []
+
+--6.1
+agregarATodos :: Integer -> Set (Set Integer) -> Set (Set Integer)
+agregarATodos n [] = []
+agregarATodos n (c:cls) = eliminarRepetidos (n:c) : agregarATodos n cls
+
+--6.2
+partes :: Integer -> Set (Set Integer)
+partes 0 = [[]]
+partes n = partes (n-1) ++ agregarATodos n (partes(n-1))
+
+--6.3
+productoCartesiano :: Set Int -> Set Int -> Set (Int, Int)
+productoCartesiano [] ys = []
+productoCartesiano (x:xs) ys = productoAUx x ys ++ productoCartesiano xs ys
+
+productoAUx n [] = []
+productoAUx n (x:xs) = [(n,x)] ++ productoAUx n xs
