@@ -10,9 +10,56 @@ def procesamiento_pedidos(pedidos: Queue,
                           stock_productos: Dict[str, int],
                           precios_productos: Dict[str, float]) -> List[Dict[str, Union[int, str, float, Dict[str, int]]]]:
   
-  res = []
-  
-  return res
+  # inicializo mis pedidos procesados
+  pedidos_procesados: Queue = []
+  # llamo mi stock de productos para ir actualizandose segun pasan los pedidos
+  stock_productos_final: dict[str, int] = stock_productos
+
+  # ITERACION SOBRE LOS PEDIDOS #
+  while not pedidos.empty():
+
+    pedido: dict[str, Union[int, str, dict[str, int]]] = pedidos.get() # tomo primer pedido de la cola
+
+    pedido_procesado: dict[str, Union[int, str, dict[str, int]]] = pedido  # parto del pedido y lo voy procesando
+    estado: str = 'completo'  # inicializo el estado, por default 'completo'
+    precio_total: float = 0  # inicializo el precio_total
+
+    # Itero los productos y su cantidad pedida #
+    for producto_pedido, cantidad_pedida in pedido['productos'].items():
+
+      cantidad_pedida_final: int = 0  # inicializo la cantidad total que se lleva el cliente
+
+      stock: float = stock_productos[producto_pedido]  # tomo el stock del producto
+
+      # Comparo stock con la cantidad pedida #
+      if stock == 0: # Sin stock
+
+        estado = 'incompleto'
+        pedido_procesado['productos'][producto_pedido] = stock  # !
+
+      elif cantidad_pedida > stock: # Pedido excede stock
+
+        estado = 'incompleto'
+        precio_total += ( stock * precios_productos[producto_pedido] )
+        cantidad_pedida_final = stock
+        pedido_procesado['productos'][producto_pedido] = cantidad_pedida_final  # !
+
+      else: # Pedido <= stock
+
+        precio_total += ( cantidad_pedida * precios_productos[producto_pedido] )
+        cantidad_pedida_final = cantidad_pedida
+        pedido_procesado['productos'][producto_pedido] = cantidad_pedida_final  # !
+      
+      # ! : detallo la cantidad final que se lleva el cliente de un pedido
+
+      stock_productos_final[producto_pedido] = stock - cantidad_pedida_final  # Actualizo el stock
+    
+    pedido_procesado['precio_total'] = precio_total  
+    pedido_procesado['estado'] = estado 
+
+    pedidos_procesados.append(pedido_procesado)  # agrego el pedido procesado
+
+  return pedidos_procesados
 
 
 if __name__ == '__main__':
