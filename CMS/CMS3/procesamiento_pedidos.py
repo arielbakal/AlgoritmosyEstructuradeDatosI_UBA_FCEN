@@ -13,14 +13,14 @@ def procesamiento_pedidos(pedidos: Queue,
   # inicializo mis pedidos procesados
   pedidos_procesados: Queue = []
   # llamo mi stock de productos para ir actualizandose segun pasan los pedidos
-  stock_productos_final: dict[str, int] = stock_productos
+  stock_productos_final: Dict[str, int] = stock_productos
 
   # ITERACION SOBRE LOS PEDIDOS #
   while not pedidos.empty():
 
-    pedido: dict[str, Union[int, str, dict[str, int]]] = pedidos.get() # tomo primer pedido de la cola
+    pedido: Dict[str, Union[int, str, Dict[str, int]]] = pedidos.get() # tomo primer pedido de la cola
 
-    pedido_procesado: dict[str, Union[int, str, dict[str, int]]] = pedido  # parto del pedido y lo voy procesando
+    pedido_procesado: Dict[str, Union[int, str, Dict[str, int]]] = pedido  # parto del pedido y lo voy procesando
     estado: str = 'completo'  # inicializo el estado, por default 'completo'
     precio_total: float = 0  # inicializo el precio_total
 
@@ -29,7 +29,7 @@ def procesamiento_pedidos(pedidos: Queue,
 
       cantidad_pedida_final: int = 0  # inicializo la cantidad total que se lleva el cliente
 
-      stock: float = stock_productos[producto_pedido]  # tomo el stock del producto
+      stock: int = stock_productos[producto_pedido]  # tomo el stock del producto
 
       # Comparo stock con la cantidad pedida #
       if stock == 0: # Sin stock
