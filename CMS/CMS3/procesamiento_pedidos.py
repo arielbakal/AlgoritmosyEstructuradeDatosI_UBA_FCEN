@@ -59,10 +59,6 @@ def procesamiento_pedidos(pedidos: Queue,
 
     pedidos_procesados.append(pedido_procesado)  # agrego el pedido procesado
 
-    print('pedido =', pedido_procesado)
-
-    print('Stock =', stock_productos_final)
-
   return pedidos_procesados
 
 
