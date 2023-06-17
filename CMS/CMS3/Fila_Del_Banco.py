@@ -24,6 +24,7 @@ def avanzarFila(fila: Queue, min: int):
       
       if i == 3 and cliente_sin_solucion != 0:
         fila.put(cliente_sin_solucion)
+        cliente_sin_solucion = 0
 
       if not fila.empty():
         # CAJA 1
