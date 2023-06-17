@@ -11,7 +11,7 @@ def procesamiento_pedidos(pedidos: Queue,
                           precios_productos: Dict[str, float]) -> List[Dict[str, Union[int, str, float, Dict[str, int]]]]:
   
   # inicializo mis pedidos procesados
-  pedidos_procesados: Queue = []
+  pedidos_procesados: List = []
   # llamo mi stock de productos para ir actualizandose segun pasan los pedidos
   stock_productos_final: Dict[str, int] = stock_productos
 
@@ -20,7 +20,7 @@ def procesamiento_pedidos(pedidos: Queue,
 
     pedido: Dict[str, Union[int, str, Dict[str, int]]] = pedidos.get() # tomo primer pedido de la cola
 
-    pedido_procesado: Dict[str, Union[int, str, Dict[str, int]]] = pedido  # parto del pedido y lo voy procesando
+    pedido_procesado: Dict[str, Union[int, str, float, Dict[str, int]]] = pedido  # parto del pedido y lo voy procesando
     estado: str = 'completo'  # inicializo el estado, por default 'completo'
     precio_total: float = 0  # inicializo el precio_total
 
@@ -58,6 +58,10 @@ def procesamiento_pedidos(pedidos: Queue,
     pedido_procesado['estado'] = estado 
 
     pedidos_procesados.append(pedido_procesado)  # agrego el pedido procesado
+
+    print('pedido =', pedido_procesado)
+
+    print('Stock =', stock_productos_final)
 
   return pedidos_procesados
 
