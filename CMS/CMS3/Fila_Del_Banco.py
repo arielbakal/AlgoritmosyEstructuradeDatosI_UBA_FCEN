@@ -26,19 +26,18 @@ def avanzarFila(fila: Queue, min: int):
         fila.put(cliente_sin_solucion)
         cliente_sin_solucion = 0
 
-      if not fila.empty():
-        # CAJA 1
-        if (((m - 1) % 10) == 0) or m == 1:
-          fila.get()
+      # CAJA 1
+      if ( (((m - 1) % 10) == 0) or m == 1 ) and not fila.empty():
+        fila.get()
 
-        # CAJA 2  
-        if (((m - 3) % 4) == 0) or m == 3:
-          fila.get()
+      # CAJA 2  
+      if ( (((m - 3) % 4) == 0) or m == 3 ) and not fila.empty():
+        fila.get()
 
-        # CAJA 3
-        if (((m - 2) % 4) == 0) or m == 2:
-          i = 0
-          cliente_sin_solucion = fila.get()
+      # CAJA 3
+      if ( (((m - 2) % 4) == 0) or m == 2 ) and not fila.empty():
+        i = 0
+        cliente_sin_solucion = fila.get()
 
 if __name__ == '__main__':
   fila: Queue = Queue()
