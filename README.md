@@ -9,6 +9,14 @@
 |-----|-------------------------------------------------------------------------- |
 
 #### Actividades Entregables
+| CMS1  | Enunciado |
+|-------|-----------|
+| Ej 1  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/CMS/CMS1/Ej1-SumaMenosQueMax.pdf) | 
+| Ej 2  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/CMS/CMS1/Ej2-SumaDigitos.pdf) | 
+| Ej 3  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/CMS/CMS1/Ej3-Prod.pdf) | 
+| Ej 4  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/CMS/CMS1/Ej4-SumaPrimerosNImparesEspecial.pdf) |
+| Ej 5  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/CMS/CMS1/Ej5-CombinacionesMenoresOIguales.pdf) |
+
 | CMS2  | Enunciado | Solución | Puntaje |
 |-------|-----------|----------| --------|
 | Ej 1  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/CMS/CMS2/Ej1-PiedraPapelTijera.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/CMS/CMS2/quienGana.py) | 100% |
