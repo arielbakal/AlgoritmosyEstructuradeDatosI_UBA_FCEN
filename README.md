@@ -4,6 +4,10 @@
 | TP  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/TP/enunciado%20-%20v2.1.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/TP/Solucion.hs) |
 |-----|-------------------------------------------------------------------------- |-------------------------------------------------------------------------|
 
+#### Parcial Integrador
+| Parcial | [Enunciado + Solución](https://github.com/arielbakal/uba_aed1/blob/main/parcial/parcial_res.pdf) |
+|-----|-------------------------------------------------------------------------- |
+
 #### Actividades Entregables
 | CMS2  | Enunciado | Solución | Puntaje |
 |-------|-----------|----------| --------|
