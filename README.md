@@ -5,8 +5,8 @@
 |-----|-------------------------------------------------------------------------- |-------------------------------------------------------------------------|
 
 #### Parcial Integrador
-| Parcial | [Enunciado + Solución](https://github.com/arielbakal/uba_aed1/blob/main/parcial/parcial_res.pdf) |
-|-----|-------------------------------------------------------------------------- |
+| Parcial | [Enunciado + Solución](https://github.com/arielbakal/uba_aed1/blob/main/parcial/parcial_res.pdf) | [Recuperatorio](https://github.com/arielbakal/uba_aed1/blob/main/parcial/recuperatorio_res.pdf)
+|-----|-------------------------------------------------------------------------- | - |
 
 #### Actividades Entregables
 | CMS1  | Enunciado |
