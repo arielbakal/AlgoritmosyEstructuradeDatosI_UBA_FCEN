@@ -1,4 +1,4 @@
-## Algoritmos y Estructuras de Datos I/Introducción a la Programación 1C2023
+## Introducción a la Programación 1C2023
 
 #### Trabajo Práctico
 | TP  | [Enunciado](https://github.com/arielbakal/uba_aed1/blob/main/TP/enunciado%20-%20v2.1.pdf) | [Solución](https://github.com/arielbakal/uba_aed1/blob/main/TP/Solucion.hs) |
